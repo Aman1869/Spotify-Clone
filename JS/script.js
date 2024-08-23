@@ -75,7 +75,7 @@ async function displayAlbums() {
     let array = Array.from(anchors)
     for (let index = 0; index < array.length; index++) {
         const e = array[index]
-        if (e.href.includes("/songs/")) {
+        if (e.href.includes("/songs/") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/").slice(-1)[0];
             // //Get the metadata of the folder
             let a = await fetch(`/songs/${folder}/info.json`);
@@ -108,7 +108,7 @@ async function displayAlbums() {
 }
 async function main() {
     //Get the list of all songs
-    await getsongs("songs/OGs");
+    await getsongs("songs/Liked%20Songs");
     playMusic(songs[0], true)
 
     //Display all the albums on the page
