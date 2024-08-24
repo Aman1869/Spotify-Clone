@@ -1,4 +1,7 @@
 {
-    "title":"Liked Songs",
+    "songs": [
+        "Whats Up Danger.mp3"
+    ],
+    "title": "Liked Songs",
     "description": "All your Favourites in one place"
 }
