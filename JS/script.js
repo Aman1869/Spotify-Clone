@@ -19,7 +19,7 @@ function formatTime(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -67,7 +67,7 @@ const playMusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 async function displayAlbums() {
-    let a = await fetch(`/songs/`);
+    let a = await fetch(`http://127.0.0.1:5500/songs/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
