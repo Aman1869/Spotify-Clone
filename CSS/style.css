@@ -279,7 +279,7 @@ body{
     justify-content:space-between;
     margin: 20px;
 }
-@media (max-width:1400px){
+@media (max-width:1200px){
     .left{
         background-color:black;
         position: absolute;
