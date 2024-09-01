@@ -1,7 +1,6 @@
 let currentSong = new Audio();
 let songs;
 let currFolder;
-
 function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) {
         return "00:00";
