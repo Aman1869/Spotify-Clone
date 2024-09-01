@@ -19,7 +19,7 @@ function formatTime(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -30,7 +30,10 @@ async function getsongs(folder) {
         if (element.href.endsWith(".mp3")) {
             songs.push(element.href.split(`/${folder}/`)[1])
         }
+        //console.log(element.href.split(`/${folder}/`)[1]);
+        
     }
+    
     
     //Show all the songs in the playlist.
     let songul = document.querySelector(".songlist").getElementsByTagName("ul")[0];
@@ -67,7 +70,7 @@ const playMusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 async function displayAlbums() {
-    let a = await fetch(`http://127.0.0.1:5500/songs/`);
+    let a = await fetch(`/songs/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -76,12 +79,12 @@ async function displayAlbums() {
     let array = Array.from(anchors)
     for (let index = 0; index < array.length; index++) {
         const e = array[index]
-        if (e.href.includes("/songs/")) {
+        if (e.href.includes("/songs/") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/").slice(-1)[0];
             // //Get the metadata of the folder
             let a = await fetch(`/songs/${folder}/info.json`);
             let response = await a.json();
-            console.log(response)
+            //console.log(response)
 
             cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card">
                         <div class="play">
@@ -109,7 +112,10 @@ async function displayAlbums() {
 }
 async function main() {
     //Get the list of all songs
+    
     await getsongs("songs/Liked%20Songs");
+    console.log(songs);
+    
     playMusic(songs[0], true)
 
     //Display all the albums on the page
